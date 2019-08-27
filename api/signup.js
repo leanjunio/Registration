@@ -1,4 +1,8 @@
 const router = require('express').Router();
+const bodyParser = require('body-parser');
+
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 router.post('/signup', (req, res) => {
 
@@ -12,6 +16,15 @@ router.post('/signup', (req, res) => {
       password: req.body.password,
       birthday: req.body.birthday
     }
+
+    // Hashing password
+    bcrypt.hash(req.body.password, saltRounds, (err, hash) => {
+      if (err) {
+        throw err;
+      } else {
+        userSignupData.password = hash
+      }
+    });
 
     // TODO: save information into another table from the database
   } else {

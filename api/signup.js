@@ -4,17 +4,27 @@ const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
-router.post('/signup', (req, res) => {
+bodyParser.json();
+bodyParser.urlencoded({ extended: true });
 
-  // basic check for required information
-  const dataCheck = req.body.firstName && req.body.lastName && req.body.email && req.body.password && req.body.birthday;
+/**
+ * Types for all the requested parameters:
+ * firstName: String
+ * lastName: String,
+ * email: String,
+ * password: String,
+ * 
+ * Note: It is best to use HTML validations to ensure that the data is validated prior to checking here
+ */
+router.post('/signup', (req, res) => {
+  const dataCheck = req.body.firstName && req.body.lastName && req.body.email && req.body.password && req.body.empId;
   if (dataCheck) {
     const userSignupData = {
+      empId: req.body.empId,
       firstName: req.body.firstName,
       lastName: req.body.lastName,
       email: req.body.email,
-      password: req.body.password,
-      birthday: req.body.birthday
+      password: req.body.password
     }
 
     // Hashing password

@@ -1,8 +1,7 @@
 const router = require('express').Router();
 const bodyParser = require('body-parser');
 
-const bcrypt = require('bcrypt');
-const saltRounds = 10;
+const User = require('../models/user');
 
 bodyParser.json();
 bodyParser.urlencoded({ extended: true });
@@ -17,8 +16,8 @@ bodyParser.urlencoded({ extended: true });
  * Note: It is best to use HTML validations to ensure that the data is validated prior to checking here
  */
 router.post('/signup', (req, res) => {
-  const dataCheck = req.body.firstName && req.body.lastName && req.body.email && req.body.password && req.body.empId;
-  if (dataCheck) {
+  const validData = req.body.firstName && req.body.lastName && req.body.email && req.body.password && req.body.empId;
+  if (validData) {
     const userSignupData = {
       empId: req.body.empId,
       firstName: req.body.firstName,
@@ -27,17 +26,34 @@ router.post('/signup', (req, res) => {
       password: req.body.password
     }
 
-    // Hashing password
-    bcrypt.hash(req.body.password, saltRounds, (err, hash) => {
-      if (err) {
-        throw err;
-      } else {
-        userSignupData.password = hash
+    // check if the user already exists
+    User.findOne({
+      firstName: userSignupData.firstName,
+      lastName: userSignupData.lastName,
+      lastName: userSignupData.lastName,
+    }, (err, user) => {
+      if (user) {
+        console.log(`User already signed up`);
+        res.redirect('./login');
+      }
+      else {
+        if (err) {
+          throw err;
+        } else {
+          // TODO: save information into another table from the database
+          User.create(userSignupData, (err, user) => {
+            if (err)
+              throw err;
+            else {
+              // TODO: Redirect to correct route when signup is successful
+            }
+          });
+        }
       }
     });
-
-    // TODO: save information into another table from the database
   } else {
     res.send(`Missing information...`);
   }
 });
+
+module.exports = router;

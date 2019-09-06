@@ -7,6 +7,7 @@ Heroku Link:    https://glacial-shelf-53509.herokuapp.com/
   2. Positions
   3. Projects
   4. Teams
+  5. Administrators **(Temporary Route)
 
 Resources: 
 https://github.com/sictweb/web422/tree/master/Code%20Examples/teams-api

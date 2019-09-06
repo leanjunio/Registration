@@ -7,6 +7,8 @@ const employeeSchema = require('./models/employee.js');
 const positionSchema = require('./models/position.js');
 const projectSchema = require('./models/project.js');
 const teamSchema = require('./models/team.js');
+const administratorSchema = require('./models/administrator.js');
+
 
 module.exports = function(mongoDBConnectionString){
 
@@ -14,6 +16,7 @@ module.exports = function(mongoDBConnectionString){
     let Position; // defined on connection to the new db instance
     let Project; // defined on connection to the new db instance
     let Team; // defined on connection to the new db instance
+    let Administrator;
 
     return {
         connect: function(){
@@ -29,14 +32,14 @@ module.exports = function(mongoDBConnectionString){
                     Position = db.model("Position", positionSchema);
                     Project = db.model("Project", projectSchema);
                     Team = db.model("Team", teamSchema);
+                    Administrator = db.model("Administrator", administratorSchema);
 
                     resolve();
                 });
             });
         },
         getAllEmployees: function(){
-            return new Promise(function(resolve,reject){
-
+            return new Promise(function(resolve,reject){    
                 Employee.find()
                 //.sort({}) //optional "sort" - https://docs.mongodb.com/manual/reference/operator/aggregation/sort/ 
                 .populate("Position") // populate the "Position" field
@@ -129,6 +132,23 @@ module.exports = function(mongoDBConnectionString){
                 });
             });
         },
+
+         getAllAdministrators: function(){
+            return new Promise(function(resolve,reject){
+
+                Administrator.find()
+                //.sort({}) //optional "sort" - https://docs.mongodb.com/manual/reference/operator/aggregation/sort/ 
+                .populate("Administrator") // populate the "Administrator" field
+                .exec()
+                .then((administrators) => {
+                    resolve(administrators);
+                })
+                .catch((err)=>{
+                    reject(err);
+                });
+            })
+        },
+
         getAllPositions: function(){
             return new Promise(function(resolve,reject){
 
@@ -386,3 +406,4 @@ module.exports = function(mongoDBConnectionString){
     }
 
 }
+

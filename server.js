@@ -23,6 +23,18 @@ app.use(morgan("combined"));
 app.use(bodyParser.json());
 app.use(cors());
 
+//temporary route to display administrator data
+app.get("/administrators", (req,res) => {
+    data.getAllAdministrators().then((data)=>{
+        res.json(data);
+    })
+    .catch((err)=>{
+        res.status(500).end();
+    })
+});
+
+
+
 // "Employee" Routes
 
 app.get("/employees", (req,res) => {

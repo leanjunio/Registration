@@ -1,8 +1,8 @@
 const router = require('express').Router();
 const bodyParser = require('body-parser');
 
-const User = require('../models/user');
-const Employee = require('../models/employee');
+// const User = require('../models/user');
+// const Employee = require('../models/employee');
 const Administrator = require('../models/administrator');
 
 bodyParser.json();

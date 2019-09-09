@@ -27,6 +27,8 @@ const UserSchema = new Schema({
     type: String,
     required: true
   }
+}, {
+  collection: 'administrators'
 });
 
 UserSchema.pre('validate', (next) => {

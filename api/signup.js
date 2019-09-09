@@ -2,6 +2,7 @@ const router = require('express').Router();
 const bodyParser = require('body-parser');
 
 const User = require('../models/user');
+const Employee = require('../models/employee');
 
 bodyParser.json();
 bodyParser.urlencoded({ extended: true });
@@ -14,6 +15,9 @@ bodyParser.urlencoded({ extended: true });
  * password: String,
  * 
  * Note: It is best to use HTML validations to ensure that the data is validated prior to checking here
+ * 
+ * This route should:
+ * - look at the employees collection to check for the employeeId?
  */
 router.post('/signup', (req, res) => {
   const validData = req.body.firstName && req.body.lastName && req.body.email && req.body.password && req.body.empId;

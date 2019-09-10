@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
   navBarTitle = "Side Project One"; // you can change the title of the navbar here
+
   constructor() { }
 
   ngOnInit() {

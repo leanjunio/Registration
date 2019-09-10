@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-
+  navBarTitle = "Side Project One"; // you can change the title of the navbar here
   constructor() { }
 
   ngOnInit() {

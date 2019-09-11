@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-register',
@@ -12,4 +13,8 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
   }
 
+  onSubmit(){
+    console.log("form submitted");
+    return this.httpClient.get<administrators[]>(`${this.adminURL}/administrators`);
+  }
 }

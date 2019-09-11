@@ -7,12 +7,8 @@ const mongoose = require('mongoose');
 
 mongoose.connect(process.env.MONGODB_URL, {useNewUrlParser: true});
 
-function OnHttpStart(){
-    console.log("Listening on port " + HTTP_PORT);
-}
-
 app.get('/', (req, res)=>{ res.render('main'); });
 app.get('/login', (req, res)=>{ res.render('login'); });
 app.get('/signup', (req, res)=>{ res.render('signup'); });
 
-app.listen(HTTP_PORT, OnHttpStart);
+app.listen(HTTP_PORT, () => console.log(`Listening on port ${HTTP_PORT}`));

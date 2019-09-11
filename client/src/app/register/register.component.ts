@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { RegisterService } from './register.service';
 
 @Component({
   selector: 'app-register',
@@ -11,14 +11,13 @@ export class RegisterComponent implements OnInit {
   @Input() administrators;
   @Output() submit = new EventEmitter();
 
-  constructor() { }
+  constructor(private registerService: RegisterService) { }
 
   ngOnInit() {
   }
 
   onSubmit(){
-    console.log("form submitted");
-    // return this.httpClient.get<administrators[]>(`${this.adminURL}/administrators`);
-    this.submit.emit(this.adminURL);
+    //console.log("form submitted");
+    this.registerService.submit();
   }
 }

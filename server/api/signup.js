@@ -1,14 +1,12 @@
 const router = require('express').Router();
 const bodyParser = require('body-parser');
 
-// const User = require('../models/user');
-// const Employee = require('../models/employee');
+const { signupValidation } = require('../helpers/validation');
+
 const Administrator = require('../models/administrator');
 
-bodyParser.json();
-bodyParser.urlencoded({ extended: true });
-
 /**
+ * This route takes a req.body consisting of { email, password }
  * Handles incoming requests regarding administrator sign up.
  * 
  * NOTE: Email and password will be the primary source of authentication
@@ -17,7 +15,9 @@ bodyParser.urlencoded({ extended: true });
  * - Check whether the email already exists within the administrator collection
  */
 router.post('/signup', (req, res) => {
-  const validData = req.body.email && req.body.password;
+  
+  // Validate data prior to creating the Administrator
+  const { error } = signupValidation(req.body);
   const userSignupData = {};
   
   if (validData) {

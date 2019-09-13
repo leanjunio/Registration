@@ -33,7 +33,7 @@ router.post('/signup',
   // Keep generating an employeeId until its unique
   while (!validId) {
     let generatedId = Math.floor(1000 + Math.random() * 9000);
-    let empIdExists = await Administrator.findOne({ employeedId: generatedId });
+    let empIdExists = await Administrator.findOne({ employeeId: generatedId });
     
     if (!empIdExists) {
       administrator.employeeId = generatedId;
@@ -49,7 +49,20 @@ router.post('/signup',
   administrator.email = req.body.email;
   administrator.password = hashedPassword;
 
-  res.send(administrator);
+  // Create a new administrator
+  const admin = new Administrator({
+    email: administrator.email,
+    password: administrator.password,
+    employeeId: administrator.employeeId
+  });
+
+  // Attempt to save the created user to DB
+  try {
+    const savedAdmin = await Administrator.save();
+    res.send({ administrator: savedUser._id });
+  } catch (error) {
+    res.status(400).send(error)    ;
+  }
 });
 
 module.exports = router;

@@ -7,7 +7,7 @@ exports = module.exports = {};
  * - employeeId
  */
 exports.signupValidation = (data) => {
-  const schema = {
+  const schema = Joi.object({
     email: Joi
       .string()
       .email()
@@ -16,6 +16,6 @@ exports.signupValidation = (data) => {
       .string()
       .min(6)
       .required()
-  };
-  Joi.validate(data, schema)
+  });
+  return schema.validate(data);
 };

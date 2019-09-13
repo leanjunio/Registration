@@ -41,13 +41,22 @@ router.post('/signup',
     }
   }
   
-  // Hash password
-  const salt = await bcrypt.genSalt(10);
-  const hashedPassword = await bcrypt.hash(req.body.password, salt);
-
   // Assign email and hashed password to object
   administrator.email = req.body.email;
-  administrator.password = hashedPassword;
+
+  // Hash password
+  bcrypt.genSalt(10, (err, salt) => {
+    bcrypt.hash(req.body.password, salt, function(err, hash) {
+      administrator.password = hash;
+    }); 
+  });
+
+  try {
+    const salt = await bcrypt.genSalt(10);
+    administrator.password = await bcrypt.hash(req.body.password, salt);
+  } catch (error) {
+    res.status(400).send(error);
+  }
 
   // Create a new administrator
   const admin = new Administrator({
@@ -58,8 +67,8 @@ router.post('/signup',
 
   // Attempt to save the created user to DB
   try {
-    const savedAdmin = await Administrator.save();
-    res.send({ administrator: savedUser._id });
+    const savedAdmin = await admin.save();
+    res.send({ administrator: savedAdmin._id });
   } catch (error) {
     res.status(400).send(error)    ;
   }

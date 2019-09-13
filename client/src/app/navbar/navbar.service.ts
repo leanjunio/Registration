@@ -16,4 +16,7 @@ export class NavbarService {
   getProjects(){
     console.log("entered getProjects()");
   }
+  getPositions(){
+    console.log("entered getPositions()");
+  }
 }

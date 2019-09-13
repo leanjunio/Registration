@@ -25,5 +25,8 @@ export class NavbarComponent implements OnInit {
   clickProjects(){
     this.navbarService.getTeams();
   }
+  clickPositions(){
+    this.navbarService.getPositions();
+  }
 
 }

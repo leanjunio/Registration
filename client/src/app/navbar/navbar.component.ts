@@ -20,7 +20,10 @@ export class NavbarComponent implements OnInit {
   }
   clickTeams(){
     //console.log("in getEmployees()");
-    this.navbarService.getTeams()
+    this.navbarService.getTeams();
+  }
+  clickProjects(){
+    this.navbarService.getTeams();
   }
 
 }

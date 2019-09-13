@@ -13,4 +13,7 @@ export class NavbarService {
   getTeams(){
     console.log("entered getTeams()");
   }
+  getProjects(){
+    console.log("entered getProjects()");
+  }
 }

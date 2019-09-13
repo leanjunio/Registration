@@ -5,6 +5,8 @@ const { signupValidation } = require('../helpers/validation');
 
 const Administrator = require('../models/administrator');
 
+const middlewares = require('../middleware/checks');
+
 /**
  * This route takes a req.body consisting of { email, password }
  * Handles incoming requests regarding administrator sign up.
@@ -14,51 +16,32 @@ const Administrator = require('../models/administrator');
  * When invoked, this route should:
  * - Check whether the email already exists within the administrator collection
  */
-router.post('/signup', (req, res) => {
+router.post('/signup', middlewares.checkEmail, (req, res) => {
+  
+  const administrator = {};
   
   // Validate data prior to creating the Administrator
   const { error } = signupValidation(req.body);
-  const userSignupData = {};
-  
-  if (validData) {
-    let generatedId = Math.floor(1000 + Math.random() * 9000);
-    let countQuery = Administrator.where({ 'EmployeeID': generatedId }).count();
-    
-    // If there are no matching EmployeeIds that are found, use the generated EmployeeId
-    while (countQuery > 0) {
-      generatedId = Math.floor(1000 + Math.random() * 9000);
-      countQuery = Administrator.where({ 'EmployeeID': generatedId }).count();
-    }
-
-    // when a unique generatedId is found, use it as the employeeId
-    userSignupData = {
-      employeedId: generatedId,
-      email: req.body.email,
-      password: req.body.password
-    }
-
-    // check if the email already exists in administrator collection
-    let adminQuery = Administrator.where({ email: userSignupData.email });
-
-    adminQuery.findOne((err, administrator) => {
-      if (err) throw err; 
-
-      // If an administrator is found, the user is already registered therefore redirect to correct login
-      if (administrator) {
-        console.log(`Administrator already signed up`);
-        res.redirect('./login');
-      } else {
-        Administrator.create(userSignupData, (err, admin) => {
-          if (err) throw err;
-          else {
-            // TODO: Redirect to success route (dashboard??)
-          }
-        });
-      }
-    });
-  } else {
-    res.send(`Missing information...`);
+  if (error) {
+    return res.status(400).send(error.details[0].message);
   }
+  
+  // Generate an id and check if the ID has already been used
+  // If the generated ID is already used, generate another one until
+  let validId = false;
+
+  while (!validId) {
+    let generatedId = Math.floor(1000 + Math.random() * 9000);
+    let empIdExists = await Administrator.findOne({ employeedId: generatedId });
+    
+    if (!empIdExists) {
+      administrator.employeeId = generatedId;
+      validId = true;
+    }
+  }
+
+  administrator.email = req.body.email;
+  administrator.password = req.body.password;
 });
 
 module.exports = router;

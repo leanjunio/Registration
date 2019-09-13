@@ -14,8 +14,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan('combined'));
 
-app.get('/', (req, res)=>{ res.render('main'); });
-app.get('/login', (req, res)=>{ res.render('login'); });
-app.get('/signup', (req, res)=>{ res.render('signup'); });
+// app.get('/', (req, res)=>{ res.render('main'); });
+// app.get('/login', (req, res)=>{ res.render('login'); });
+// app.get('/signup', (req, res)=>{ res.render('signup'); });
 
 app.listen(HTTP_PORT, () => console.log(`Listening on port ${HTTP_PORT}`));

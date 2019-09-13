@@ -5,12 +5,13 @@ import { Administrators } from '../administrators';
   providedIn: 'root'
 })
 export class RegisterService {
-  adminURL: string = 'https://glacial-shelf-53509.herokuapp.com/administrators';
-  constructor(private httpClient: HttpClient) { }
-
+ // adminURL: string = 'https://glacial-shelf-53509.herokuapp.com/administrators';
+ // constructor(private httpClient: HttpClient) { }
+ constructor(){}
+ 
   submit() {
-    // console.log("in submit()"+ `${this.adminURL}/administrators`)
+     console.log("in submit()");
     //return this.httpClient.get<any[]>(`${this.adminURL}`);
-    window.location.href = this.adminURL;
+    //window.location.href = this.adminURL;
   }
 }

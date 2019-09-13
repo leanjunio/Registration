@@ -19,4 +19,7 @@ export class NavbarService {
   getPositions(){
     console.log("entered getPositions()");
   }
+  getAdministrators(){
+    console.log("entered getAdministrators()");
+  }
 }

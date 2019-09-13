@@ -28,5 +28,8 @@ export class NavbarComponent implements OnInit {
   clickPositions(){
     this.navbarService.getPositions();
   }
+  clickAdministrators(){
+    this.navbarService.getAdministrators();
+  }
 
 }

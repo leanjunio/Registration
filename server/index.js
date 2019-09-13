@@ -1,21 +1,26 @@
-const HTTP_PORT = 8080;
 require('dotenv').config();
 const express = require('express');
-const app = express();
-const path = require("path");
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const morgan = require('morgan');
 
-mongoose.connect(process.env.MONGODB_URL, {useNewUrlParser: true});
+const authRoutes = require('./api/auth');
 
-function OnHttpStart(){
-    console.log("Listening on port " + HTTP_PORT);
-}
+const app = express();
+const HTTP_PORT = 8080;
 
-app.set('views',path.join(__dirname,"views"))
-app.set("view engine", "hbs");
+mongoose.connect(process.env.MONGODB_URL, {useNewUrlParser: true}, () => console.log(`Connected to DB`));
 
-app.get('/', (req, res)=>{ res.render('main'); });
-app.get('/login', (req, res)=>{ res.render('login'); });
-app.get('/signup', (req, res)=>{ res.render('signup'); });
+// middleware
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(morgan('combined'));
 
-app.listen(HTTP_PORT, OnHttpStart);
+app.use('/api/user', authRoutes);
+
+
+// app.get('/', (req, res)=>{ res.render('main'); });
+// app.get('/login', (req, res)=>{ res.render('login'); });
+// app.get('/signup', (req, res)=>{ res.render('signup'); });
+
+app.listen(HTTP_PORT, () => console.log(`Listening on port ${HTTP_PORT}`));

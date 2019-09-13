@@ -7,25 +7,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class NavbarService {
   baseUrl = "https://glacial-shelf-53509.herokuapp.com/";
-  //constructor() { }
+
   constructor(private httpClient: HttpClient){}
-
-  // getEmployees(){
-  //   console.log("entered getEmployees()");
-  // }
-  // getTeams(){
-  //   console.log("entered getTeams()");
-  // }
-  // getProjects(){
-  //   console.log("entered getProjects()");
-  // }
-  // getPositions(){
-  //   console.log("entered getPositions()");
-  // }
-  // getAdministrators(){
-  //   console.log("entered getAdministrators()");
-  // }
-
 
   getData(path){
      console.log("entered getData(): " + this.baseUrl + path);

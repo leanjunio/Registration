@@ -23,7 +23,7 @@ export class NavbarComponent implements OnInit {
     this.navbarService.getTeams();
   }
   clickProjects(){
-    this.navbarService.getTeams();
+    this.navbarService.getProjects();
   }
   clickPositions(){
     this.navbarService.getPositions();

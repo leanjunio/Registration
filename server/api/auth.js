@@ -1,10 +1,7 @@
 const router = require('express').Router();
-const bodyParser = require('body-parser');
 
 const { signupValidation } = require('../helpers/validation');
-
 const Administrator = require('../models/administrator');
-
 const middlewares = require('../middleware/checks');
 
 /**
@@ -16,32 +13,41 @@ const middlewares = require('../middleware/checks');
  * When invoked, this route should:
  * - Check whether the email already exists within the administrator collection
  */
-router.post('/signup', middlewares.checkEmail, (req, res) => {
+router.post('/signup', 
+  middlewares.checkEmail, 
+  async (req, res) => {
   
   const administrator = {};
   
   // Validate data prior to creating the Administrator
   const { error } = signupValidation(req.body);
   if (error) {
+    console.log('error found');
     return res.status(400).send(error.details[0].message);
   }
   
   // Generate an id and check if the ID has already been used
   // If the generated ID is already used, generate another one until
-  let validId = false;
+  // let validId = false;
 
-  while (!validId) {
-    let generatedId = Math.floor(1000 + Math.random() * 9000);
-    let empIdExists = await Administrator.findOne({ employeedId: generatedId });
-    
-    if (!empIdExists) {
-      administrator.employeeId = generatedId;
-      validId = true;
-    }
-  }
+  // try {
+  //   while (!validId) {
+  //     let generatedId = Math.floor(1000 + Math.random() * 9000);
+  //     let empIdExists = await Administrator.findOne({ employeedId: generatedId });
+      
+  //     if (!empIdExists) {
+  //       administrator.employeeId = generatedId;
+  //       validId = true;
+  //     }
+  //   }
+  // } catch (error) {
+  //   res.status(400).send(error);
+  // }
 
-  administrator.email = req.body.email;
-  administrator.password = req.body.password;
+  // administrator.email = req.body.email;
+  // administrator.password = req.body.password;
+
+  // res.send(administrator);
 });
 
 module.exports = router;

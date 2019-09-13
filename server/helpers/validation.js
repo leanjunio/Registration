@@ -1,12 +1,12 @@
 const Joi = require('@hapi/joi');
-
+exports = module.exports = {};
 /**
  * Checks that minimum requirements are met upon validation:
  * - email
  * - password
  * - employeeId
  */
-module.exports.signupValidation = data => {
+exports.signupValidation = (data) => {
   const schema = {
     email: Joi
       .string()
@@ -15,11 +15,7 @@ module.exports.signupValidation = data => {
     password: Joi
       .string()
       .min(6)
-      .required(),
-    employeeId: Joi
-      .string()
-      .min(4)
-      .max(4)
+      .required()
   };
-  return Joi.validate(data, schema);
-}
+  Joi.validate(data, schema)
+};

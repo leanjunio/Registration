@@ -13,23 +13,25 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {
   }
+
   // temporary methods for rendering the data
-  clickEmployees(){
-    //console.log("in getEmployees()");
-    this.navbarService.getEmployees()
-  }
-  clickTeams(){
-    //console.log("in getEmployees()");
-    this.navbarService.getTeams();
-  }
-  clickProjects(){
-    this.navbarService.getProjects();
-  }
-  clickPositions(){
-    this.navbarService.getPositions();
-  }
-  clickAdministrators(){
-    this.navbarService.getAdministrators();
+  // clickEmployees(){
+  //   this.navbarService.getEmployees()
+  // }
+  // clickTeams(){
+  //   this.navbarService.getTeams();
+  // }
+  // clickProjects(){
+  //   this.navbarService.getProjects();
+  // }
+  // clickPositions(){
+  //   this.navbarService.getPositions();
+  // }
+  // clickAdministrators(){
+  //   this.navbarService.getAdministrators();
+  // }
+  clickTab(path){
+    this.navbarService.getData(path);
   }
 
 }

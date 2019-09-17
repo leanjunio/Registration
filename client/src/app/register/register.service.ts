@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Administrators } from '../administrators';
+import { AdministratorsRaw } from '../administratorsRaw';
 @Injectable({
   providedIn: 'root'
 })
@@ -9,9 +9,9 @@ export class RegisterService {
  // constructor(private httpClient: HttpClient) { }
  constructor(){}
  
-  submit() {
-     console.log("in submit()");
-    //return this.httpClient.get<any[]>(`${this.adminURL}`);
-    //window.location.href = this.adminURL;
-  }
+  // submit() {
+  //    console.log("in submit()");
+  //   return this.httpClient.get<any[]>(`${this.adminURL}`);
+  //   window.location.href = this.adminURL;
+  // }
 }

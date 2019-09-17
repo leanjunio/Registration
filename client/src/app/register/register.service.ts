@@ -6,7 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class RegisterService {
 // adminURL: string = 'https://glacial-shelf-53509.herokuapp.com/administrators';
- port ='http://localhost:4200/signup';
+ port ='http://localhost:8080/signup';
  constructor(private httpClient: HttpClient) { }
  //constructor(){}
  
@@ -20,7 +20,7 @@ export class RegisterService {
     headers.append('Content-Type', 'application/json');
     this.httpClient.post(this.port, formItems, {headers : headers})
       .subscribe(res => {
-         console.log('inside postmehtod of sub.function');//only objects
+         console.log('inside httpClient.post(...).subscribe(...)');
       })
   }
 }

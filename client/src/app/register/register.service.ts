@@ -6,7 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class RegisterService {
 // adminURL: string = 'https://glacial-shelf-53509.herokuapp.com/administrators';
- port ='http://localhost:8080/signup';
+ port ='http://localhost:8080/api/user/signup';
  constructor(private httpClient: HttpClient) { }
  //constructor(){}
  

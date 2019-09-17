@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { RegisterService } from './register.service';
-import { AdministratorsRaw } from '../AdministratorsRaw';
+import { AdministratorsRaw } from '../administratorsRaw';
 import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
@@ -15,7 +15,7 @@ export class RegisterComponent implements OnInit {
   //@Input() administrators;
   //@Output() submit = new EventEmitter();
   //register: AdministratorsRaw;
-  //constructor(private registerService: RegisterService) { }
+  constructor(private registerService: RegisterService) { }
 
   ngOnInit() {
     this.form = new FormGroup(
@@ -25,7 +25,9 @@ export class RegisterComponent implements OnInit {
       });
   }
   onSubmit(formItems) {
-    console.log(formItems);
+    //console.log(formItems);
+    
+ 
   }
 
 }

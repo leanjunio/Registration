@@ -9,9 +9,9 @@ export class RegisterService {
  // constructor(private httpClient: HttpClient) { }
  constructor(){}
  
-  // submit() {
-  //    console.log("in submit()");
-  //   return this.httpClient.get<any[]>(`${this.adminURL}`);
-  //   window.location.href = this.adminURL;
-  // }
+  submit() {
+    console.log("in submit()");
+    //return this.httpClient.get<any[]>(`${this.adminURL}`);
+    //window.location.href = this.adminURL;
+  }
 }

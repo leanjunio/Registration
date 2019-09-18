@@ -9,21 +9,19 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
-<body>
-
-  
+<body>  
 <div class="container">
 <!-- The following form style was from: https://getbootstrap.com/docs/4.0/components/forms/ -->
-  <form>
+  <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
   <!-- Email Address  -->
   <div class="form-group col-sm-12">
     <label for="email">Email address</label>
-    <input type="email" class="form-control" id="email" placeholder="name@example.com" required>
+    <input type="email" class="form-control" id="email" placeholder="name@example.com" formControlName="email" required>
   </div>
   <!-- Password  -->
    <div class="form-group col-sm-12">
     <label for="password">Password</label>
-    <input type="password" class="form-control" id="password" placeholder="Password" required>
+    <input type="password" class="form-control" id="password" placeholder="Password" formControlName="password" required>
   </div>
   <!-- Submit  -->
 <div class="col-sm-12">

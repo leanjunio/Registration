@@ -3,6 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
+const cors = require('cors');
 
 const authRoutes = require('./api/auth');
 
@@ -14,7 +15,8 @@ mongoose.connect(process.env.MONGODB_URL, {useNewUrlParser: true}, () => console
 // middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(morgan('combined'));
+app.use(morgan('dev'));
+app.use(cors());
 
 app.use('/api/user', authRoutes);
 

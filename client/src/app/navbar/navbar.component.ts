@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { NavbarService } from './navbar.service';
 
 @Component({
   selector: 'app-navbar',
@@ -7,6 +6,6 @@ import { NavbarService } from './navbar.service';
   styleUrls: ['./navbar.component.css']
 })
 
-export class NavbarComponent implements OnInit {
+export class NavbarComponent {
   navBarTitle = "Side Project One";
 }

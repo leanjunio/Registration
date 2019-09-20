@@ -8,4 +8,5 @@ import { Component } from '@angular/core';
 
 export class NavbarComponent {
   navBarTitle = "Side Project One";
+  navBarTabOne = "Register";
 }

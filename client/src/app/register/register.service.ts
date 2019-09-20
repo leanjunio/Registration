@@ -6,9 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 
 export class RegisterService {
-
  port ='http://localhost:8080/api/user/signup';
-
  constructor(private httpClient: HttpClient) { }
  
  onSubmit(formValues) {

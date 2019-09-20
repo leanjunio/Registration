@@ -1,0 +1,25 @@
+//navbar.component.html
+
+<div class="top-right">
+    <ul class="nav navbar-nav">
+      <li><a (click)="onClick('employees')">Employees</a></li>
+      <li><a (click)="onClick('teams')">Teams</a></li>
+      <li><a (click)="onClick('projects')">Projects</a></li>
+      <li><a (click)="onClick('positions')">Positions</a></li>
+      <li><a (click)="onClick('administrators')">Administrators</a></li>
+    </ul>
+</div>
+
+
+//navbar.component.ts
+
+ onClick(path){
+   this.navbarService.getData(path);
+  }
+
+
+//navbar.component.css
+
+.top-right {
+    float: right;
+}

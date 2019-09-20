@@ -8,15 +8,12 @@ import { NavbarService } from './navbar.service';
 })
 
 export class NavbarComponent implements OnInit {
+ 
   navBarTitle = "Side Project One";
  
   constructor(private navbarService: NavbarService) { }
 
   ngOnInit() {
-  }
-
-  onClick(path){
-   this.navbarService.getData(path);
   }
 
 }

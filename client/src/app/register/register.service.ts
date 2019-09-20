@@ -19,10 +19,13 @@ export class RegisterService {
 
  onSubmit(formValues) {
    if(this.validate(formValues)) {
-     let headers = new HttpHeaders();
-     headers.append('Content-Type', 'application/json');
-     this.httpClient.post(this.port, formValues, {headers : headers});
+
+
+    //  let headers = new HttpHeaders();
+    //  headers.append('Content-Type', 'application/json');
+    //  this.httpClient.post(this.port, formValues, {headers : headers}).subscribe(res => {});
+
+
      this.isValid = true;
-   }
   }
 }

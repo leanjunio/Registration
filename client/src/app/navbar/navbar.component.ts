@@ -7,6 +7,6 @@ import { Component } from '@angular/core';
 })
 
 export class NavbarComponent {
-  navBarTitle = "Side Project One";
+  navBarTitle = "Project: Registration";
   navBarTabOne = "Register";
 }

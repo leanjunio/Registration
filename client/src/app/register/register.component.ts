@@ -10,13 +10,14 @@ import { FormGroup, FormControl } from '@angular/forms';
 
 export class RegisterComponent implements OnInit {
   form;
+  errorMsg = "Invalid Email or Password";
   constructor(private registerService: RegisterService) { }
 
   ngOnInit() {
     this.form = new FormGroup(
       {
-        email: new FormControl(),
-        password: new FormControl(),
+        email: new FormControl(''),
+        password: new FormControl(''),
       });
   }
 }

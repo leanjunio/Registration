@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { NavbarService } from './navbar.service';
 
 @Component({
@@ -8,12 +8,5 @@ import { NavbarService } from './navbar.service';
 })
 
 export class NavbarComponent implements OnInit {
- 
   navBarTitle = "Side Project One";
- 
-  constructor(private navbarService: NavbarService) { }
-
-  ngOnInit() {
-  }
-
 }

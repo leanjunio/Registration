@@ -9,7 +9,7 @@
 <body>  
   <div class="container">
   <!-- The following form style was from: https://getbootstrap.com/docs/4.0/components/forms/ -->
-  <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+  <form [formGroup]="form" (ngSubmit)="registerService.onSubmit(form.value)">
     <!-- Email Address  -->
     <div class="form-group col-sm-12">
       <label for="email">Email address</label>

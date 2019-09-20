@@ -11,7 +11,7 @@ export class RegisterService {
 
  constructor(private httpClient: HttpClient) { }
  
- submit(formValues) {
+ onSubmit(formValues) {
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
     this.httpClient.post(this.port, formValues, {headers : headers});

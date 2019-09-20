@@ -11,7 +11,6 @@ import { FormGroup, FormControl } from '@angular/forms';
 export class RegisterComponent implements OnInit {
   
   form;
-
   constructor(private registerService: RegisterService) { }
 
   ngOnInit() {
@@ -21,9 +20,4 @@ export class RegisterComponent implements OnInit {
         password: new FormControl(),
       });
   }
-
-  onSubmit(formValues) {
-   this.registerService.submit(formValues);  
-  }
-
 }

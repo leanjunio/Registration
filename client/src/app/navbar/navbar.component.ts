@@ -6,15 +6,16 @@ import { NavbarService } from './navbar.service';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
+
 export class NavbarComponent implements OnInit {
-  navBarTitle = "Side Project One"; // you can change the title of the navbar here
+  navBarTitle = "Side Project One";
  
   constructor(private navbarService: NavbarService) { }
 
   ngOnInit() {
   }
 
-  clickTab(path){
+  onClick(path){
    this.navbarService.getData(path);
   }
 

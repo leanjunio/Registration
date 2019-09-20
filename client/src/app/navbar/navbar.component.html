@@ -1,7 +1,3 @@
-<!-- <p>navbar works!</p> -->
-
-<!-- The below navigation bar was from: https://www.w3schools.com/bootstrap/tryit.asp?filename=trybs_navbar_inverse&stacked=h -->
-
 <head>
   <title>Main</title>
   <meta charset="utf-8">
@@ -11,25 +7,21 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-<!-- must fix active links (click = highlighted) -->
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" routerLink="/">{{ navBarTitle }}</a>
     </div>
     <ul class="nav navbar-nav">
-      <!-- <li class="active" routerLink="/"><a>Home</a></li> -->
-      <!-- <li><a href="login">Log In</a></li> -->
       <li class="active"><a routerLink="/register">Register</a></li>
     </ul>
-    <!-- The links below may be temporary until a route/place for rendering the data is selected-->
     <div class="top-right">
     <ul class="nav navbar-nav">
-      <li><a (click)="clickTab('employees')">Employees</a></li>
+      <!-- <li><a (click)="clickTab('employees')">Employees</a></li>
       <li><a (click)="clickTab('teams')">Teams</a></li>
       <li><a (click)="clickTab('projects')">Projects</a></li>
       <li><a (click)="clickTab('positions')">Positions</a></li>
-      <li><a (click)="clickTab('administrators')">Administrators</a></li>
+      <li><a (click)="clickTab('administrators')">Administrators</a></li> -->
     </ul>
     </div>
 

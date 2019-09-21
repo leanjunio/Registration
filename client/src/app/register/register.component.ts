@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { RegisterService } from './register.service';
 import { Administrator } from '../administrator';
 
@@ -17,8 +18,12 @@ export class RegisterComponent implements OnInit {
     this.administrator = new Administrator('', '');
   }
 
-  onSubmit() {
-    console.log(this.administrator);
-
+  onSubmit(f: NgForm) {
+    this.registerService.addAdmin(this.administrator)
+      .subscribe(admin => {
+        // NOTE: admin contains whatever is returned by the backend route its creating a request to
+        alert(`The admin with email: ${admin.email} has been saved.`);
+        f.resetForm();
+      });
   }
 }

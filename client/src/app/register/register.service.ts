@@ -1,45 +1,53 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Injectable } from "@angular/core";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Observable, of } from "rxjs";
+import { catchError, map, tap } from 'rxjs/operators';
+import { Administrator } from "../administrator";
+import { MessageService } from '../message.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
-
 export class RegisterService {
- httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type':  'application/json',
-      'Authorization': 'my-auth-token'
-    })
+  httpOptions = {
+    headers: new HttpHeaders({ "Content-Type": "application/json" })
   };
 
- isValid = null;
- port ='http://localhost:8080/api/user/signup';
- constructor(private httpClient: HttpClient) { }
- 
- validate(formValues){
-   var invalidEmail = formValues.email.indexOf("@") == -1 || formValues.email.indexOf(".") == -1; 
-   var invalidPw = formValues.password.length < 6;
-   (!invalidEmail && !invalidPw) ? this.isValid = true : this.isValid = false;
-   return this.isValid;  
- }
+  url = "http://localhost:8080/api/user/signup";
+  
+  constructor(private http: HttpClient, private messageService: MessageService) {}
 
-//  onSubmit(formValues) {
-//    if(this.validate(formValues)) {
-//      let headers = new HttpHeaders();
-//      headers.append('Content-Type', 'application/json');
-//      this.httpClient.post(this.port, formValues, {headers : headers}).subscribe(res => {});
-//      this.isValid = true;
-//   }
-// }
-
-onSubmit(formValues): Observable<any> {
-  if(this.validate(formValues)) {
-    this.isValid = true;
-    return this.httpClient.post<any>(this.port, formValues, this.httpOptions)
-      .pipe( // catchError(this.handleError('addAdmin', formValues))
+  // SAVE METHODS
+  addAdmin(administrator: Administrator): Observable<Administrator> {
+    console.log(`addAdmin`);
+    return this.http.post<Administrator>(this.url, administrator, this.httpOptions).pipe(
+      tap((newAdmin: Administrator) => this.log(`Added admin: ${newAdmin.email}`)),
+      catchError(this.handleError<Administrator>('addAdmin'))
     );
   }
- }
+
+  /**
+   * Handle Http operation that failed.
+   * Let the app continue.
+   * @param operation - name of the operation that failed
+   * @param result - optional value to return as the observable result
+   */
+  private handleError<T> (operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+
+      // TODO: send the error to remote logging infrastructure
+      console.error(error); // log to console instead
+
+      // TODO: better job of transforming error for user consumption
+      this.log(`${operation} failed: ${error.message}`);
+
+      // Let the app keep running by returning an empty result.
+      return of(result as T);
+    };
+  }
+
+  /** Log a HeroService message with the MessageService */
+  private log(message: string) {
+    this.messageService.add(`HeroService: ${message}`);
+  }
 }

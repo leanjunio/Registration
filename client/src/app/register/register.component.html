@@ -1,34 +1,46 @@
-<head>
-  <title>Register</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-</head>
-<body>  
-  <div class="container">
-  <!-- The following form style was from: https://getbootstrap.com/docs/4.0/components/forms/ -->
-  <form [formGroup]="form" (ngSubmit)="registerService.onSubmit(form.value)">
-    <!-- Email Address  -->
-    <div class="form-group col-sm-12">
-      <label for="email">Email address</label>
-      <input type="email" class="form-control" formControlName="email" placeholder="name@example.com">
+<div class="container">
+  <h2>Administrator Registration</h2>
+  <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+
+    <!-- Email -->
+    <div class="form-group">
+      <label for="name">Email</label>
+      <input type="text" class="form-control" id="name" required [(ngModel)]="administrator.email" name="email"
+        #email="ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}">
+
+      <!-- Adds visuals to the errors if the field is empty or does not follow the pattern specified -->
+      <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+        <div *ngIf="email.errors.pattern">
+          Email must follow the pattern: name@email.com
+        </div>
+        <div *ngIf="email.errors.required">
+          Email is required
+        </div>
+      </div>
     </div>
-    <!-- Password  -->
-    <div class="form-group col-sm-12">
+
+    <!-- Password -->
+    <div class="form-group">
       <label for="password">Password</label>
-      <input type="password" class="form-control" formControlName="password" placeholder="Password">
+      <input type="password" class="form-control" id="password" required minlength="6" #password="ngModel" password
+        [(ngModel)]="administrator.password" name="password" ngModel>
+
+      <!-- Adds visuals to the errors if the field is empty or does not follow the minimum length specified -->
+      <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
+        <div *ngIf="password.errors.minlength">
+          Password must have at least 6 characters
+        </div>
+        <div *ngIf="password.errors.required">
+          Password is required
+        </div>
+      </div>
     </div>
-    <!-- Error Message -->
-     <div class="col-sm-12" *ngIf="registerService.isValid == false">  
-        {{ errorMsg }}
+
+    <button type="submit" class="btn btn-primary" [disabled]="!f.form.valid">Submit</button>
+    <div *ngIf="success">
+      <br>
+      <b>The admin with email: {{ receivedAdmin.email }} has been saved.</b>
     </div>
-    <!-- Submit  -->
-    <div class="col-sm-12">
-        <br />
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </div>
+
   </form>
-  </div>
-</body>
+</div>

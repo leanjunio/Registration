@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { RegisterService } from './register.service';
-import { FormGroup, FormControl } from '@angular/forms';
+import { Administrator } from '../administrator';
 
 @Component({
   selector: 'app-register',
@@ -9,15 +10,24 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 
 export class RegisterComponent implements OnInit {
-  form;
-  errorMsg = "Invalid Email or Password";
+  administrator: Administrator;
+  receivedAdmin: Administrator;
+  successMessage: string;
+  success = false;
+  
   constructor(private registerService: RegisterService) { }
 
   ngOnInit() {
-    this.form = new FormGroup(
-      {
-        email: new FormControl(''),
-        password: new FormControl(''),
+    this.administrator = new Administrator('', '');
+  }
+
+  // NOTE: admin contains whatever is returned by the backend route its creating a request to
+  onSubmit(f: NgForm) {
+    this.registerService.addAdmin(this.administrator)
+      .subscribe(admin => {
+        this.success = true;
+        this.receivedAdmin = admin;
+        f.resetForm();
       });
   }
 }

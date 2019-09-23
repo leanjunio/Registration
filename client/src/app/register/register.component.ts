@@ -30,9 +30,7 @@ export class RegisterComponent implements OnInit {
         this.success = true;
         this.receivedAdmin = admin;
         f.resetForm();
-      }
-      
+      }     
       );
-      console.log("qwertyui")
   }
 }

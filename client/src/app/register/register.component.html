@@ -5,7 +5,7 @@
     <!-- Email -->
     <div class="form-group">
       <label for="name">Email</label>
-      <input type="text" class="form-control" id="name" required [(ngModel)]="administrator.email" name="email"
+      <input type="text" class="form-control" placeholder="Email" id="name" required [(ngModel)]="administrator.email" name="email"
         #email="ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}">
 
       <!-- Adds visuals to the errors if the field is empty or does not follow the pattern specified -->
@@ -22,7 +22,7 @@
     <!-- Password -->
     <div class="form-group">
       <label for="password">Password</label>
-      <input type="password" class="form-control" id="password" required minlength="6" #password="ngModel" password
+      <input type="password" class="form-control" placeholder="Password" id="password" required minlength="6" #password="ngModel" password
         [(ngModel)]="administrator.password" name="password" ngModel>
 
       <!-- Adds visuals to the errors if the field is empty or does not follow the minimum length specified -->

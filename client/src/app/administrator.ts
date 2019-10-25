@@ -5,8 +5,4 @@ export class Administrator {
     email: string,
     password: string,
   ) {}
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> master

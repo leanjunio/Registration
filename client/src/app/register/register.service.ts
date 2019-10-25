@@ -2,9 +2,13 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable, of } from "rxjs";
 import { catchError, map, tap } from 'rxjs/operators';
+<<<<<<< HEAD
 
 import { Administrator } from "../administrator";
 
+=======
+import { Administrator } from "../administrator";
+>>>>>>> master
 import { MessageService } from '../message.service';
 
 @Injectable({
@@ -52,4 +56,8 @@ export class RegisterService {
   private log(message: string) {
     this.messageService.add(`HeroService: ${message}`);
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> master

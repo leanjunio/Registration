@@ -12,7 +12,11 @@ import { Administrator } from '../administrator';
 export class RegisterComponent implements OnInit {
   administrator: Administrator;
   receivedAdmin: Administrator;
+<<<<<<< HEAD
   successMessage: string;
+=======
+  //successMessage: string;
+>>>>>>> master
   success = false;
   
   constructor(private registerService: RegisterService) { }
@@ -24,10 +28,22 @@ export class RegisterComponent implements OnInit {
   // NOTE: admin contains whatever is returned by the backend route its creating a request to
   onSubmit(f: NgForm) {
     this.registerService.addAdmin(this.administrator)
+<<<<<<< HEAD
       .subscribe(admin => {
         this.success = true;
         this.receivedAdmin = admin;
         f.resetForm();
       });
+=======
+      .subscribe(
+        admin => {
+        console.log("admin is: " + this.receivedAdmin);
+        this.success = true;
+        this.receivedAdmin = admin;
+        f.resetForm();
+      }
+      
+      );
+>>>>>>> master
   }
 }

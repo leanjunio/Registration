@@ -68,7 +68,7 @@ router.post('/signup',
   // Attempt to save the created user to DB
   try {
     const savedAdmin = await admin.save();
-    res.send(administrator);
+    res.send(savedAdmin);
   } catch (error) {
     res.status(400).send(error)    ;
   }

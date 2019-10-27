@@ -21,7 +21,7 @@ export class RegisterService {
   addAdmin (administrator: Administrator): Observable<Administrator> {
     return this.http.post<Administrator>(this.url, administrator, this.httpOptions)
       .pipe(
-        tap((newAdmin: Administrator) => this.log(`Added admin: ${newAdmin.administrator}`)),   // newAdmin.administrator contains the ObjectId generated in MongoDB
+        tap((newAdmin: Administrator) => this.log(`Added admin: ${newAdmin.email}`)),   // newAdmin.administrator contains the ObjectId generated in MongoDB
         catchError(this.handleError<Administrator>('addAdmin'))
       );
   }

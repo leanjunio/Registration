@@ -18,12 +18,12 @@ export class RegisterService {
   constructor(private http: HttpClient, private messageService: MessageService) {}
 
   // SAVE METHODS
-  addAdmin(administrator: Administrator): Observable<Administrator> {
-    console.log(`addAdmin`);
-    return this.http.post<Administrator>(this.url, administrator, this.httpOptions).pipe(
-      tap((newAdmin: Administrator) => this.log(`Added admin: ${newAdmin.email}`)),
-      catchError(this.handleError<Administrator>('addAdmin'))
-    );
+  addAdmin (administrator: Administrator): Observable<Administrator> {
+    return this.http.post<Administrator>(this.url, administrator, this.httpOptions)
+      .pipe(
+        tap((newAdmin: Administrator) => this.log(`Added admin: ${newAdmin.administrator}`)),   // newAdmin.administrator contains the ObjectId generated in MongoDB
+        catchError(this.handleError<Administrator>('addAdmin'))
+      );
   }
 
   /**
@@ -46,8 +46,9 @@ export class RegisterService {
     };
   }
 
-  /** Log a HeroService message with the MessageService */
+  /** Log a RegisterService message with the MessageService */
+  // NOTE: This is for a future feature
   private log(message: string) {
-    this.messageService.add(`HeroService: ${message}`);
+    console.log(`${message}`);
   }
 }

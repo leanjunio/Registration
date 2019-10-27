@@ -70,7 +70,7 @@ router.post('/signup',
     const savedAdmin = await admin.save();
     res.send(savedAdmin);
   } catch (error) {
-    res.status(400).send(error)    ;
+    res.status(400).send(error);
   }
 });
 

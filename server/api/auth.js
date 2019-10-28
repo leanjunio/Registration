@@ -70,7 +70,9 @@ router.post('/signup',
     const savedAdmin = await admin.save();
     res.send(savedAdmin);
   } catch (error) {
-    res.status(400).send(error);
+    res.status(400).send({
+      message: `There was an error while attempting to save administrator into the database`
+    });
   }
 });
 

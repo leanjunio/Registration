@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { RegisterService } from './register.service';
 import { Administrator } from '../administrator';
+// import { error } from 'util';
 
 @Component({
   selector: 'app-register',
@@ -13,6 +14,8 @@ export class RegisterComponent implements OnInit {
   administrator: Administrator;
   receivedAdmin: Administrator;
   success = false;
+  fail = false;
+  errorMessage = ''
   
   constructor(private registerService: RegisterService) { }
 
@@ -24,10 +27,17 @@ export class RegisterComponent implements OnInit {
   onSubmit(f: NgForm) {
     this.registerService
       .addAdmin(this.administrator)
-      .subscribe(admin => {
-        this.success = true;
-        this.receivedAdmin = admin;
-        f.resetForm();
-      });
+      .subscribe(
+        (admin: Administrator) => {
+          this.success = true;
+          this.receivedAdmin = admin;
+          f.resetForm();
+        },
+        err => {
+          this.fail = true;
+          this.errorMessage = err.error.message;
+          f.resetForm();
+        }
+      );
   }
 }

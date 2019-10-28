@@ -42,5 +42,11 @@
       <b>The admin with email: {{ receivedAdmin.email }} has been saved.</b>
     </div>
 
+    <!-- Whenever an error occurs -->
+    <div *ngIf="fail">
+      <br>
+      <b>An error has occurred: {{ errorMessage }}</b>
+    </div>
+
   </form>
 </div>

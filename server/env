@@ -1,1 +1,2 @@
 MONGODB_URL=mongodb+srv://leanjunio:xkSAL6qvySgAaV1j@senecaweb-7tbjs.mongodb.net/test?retryWrites=true&w=majority
+JWT_KEY=MyJwtKey

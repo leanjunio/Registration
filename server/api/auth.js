@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 const { signupValidation } = require('../helpers/validation');
 const Administrator = require('../models/administrator');
@@ -65,11 +66,16 @@ router.post('/signup',
     employeeId: administrator.employeeId
   });
 
-  // Attempt to save the created user to DB
+  // create a token from the data that is received
+  // add the token to the admin's tokens array
+  // save the administrator afterwards and return a status that indicates that a token has been created
   try {
+    const token = jwt.sign({ _id: admin._id }, process.env.JWT_KEY);
+    admin.tokens = [...admin.tokens, {token}];
     const savedAdmin = await admin.save();
-    res.send(savedAdmin);
+    res.status(201).send({ savedAdmin, token });
   } catch (error) {
+    console.log(error)
     res.status(400).send(error)    ;
   }
 });

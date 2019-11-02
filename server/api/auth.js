@@ -14,11 +14,12 @@ const middlewares = require('../middleware/checks');
  * 
  * When invoked, this route should:
  * - Check whether the email already exists within the administrator collection
+ * - Generate a new id that is unique to itself
+ * - Hash the password received
+ * - Create a token for itself and add the token to the registered admin's properties
+ * - Save the admin
  */
-router.post('/signup', 
-  middlewares.checkEmail, 
-  async (req, res) => {
-  
+router.post('/signup', middlewares.checkEmail, async (req, res) => {
   const administrator = {};
   
   // Validate data prior to creating the Administrator

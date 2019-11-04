@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormBuilder } from '@angular/forms';
 import { Administrator } from '../administrator';
 
 
@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
     success = false;
     fail = false;
     errorMessage = ''
+
     
     constructor() { }
   
@@ -23,6 +24,7 @@ export class LoginComponent implements OnInit {
   
     onSubmit(f: NgForm) {
       console.log("login hit");
+
     }
   }
   

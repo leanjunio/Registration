@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
     errorMessage = ''
 
     
-    constructor(loginService: LoginService) { }
+    constructor(private loginService: LoginService) { }
   
     ngOnInit() {
       this.administrator = new Administrator('', '');

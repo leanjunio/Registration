@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm, FormBuilder } from '@angular/forms';
 import { Administrator } from '../administrator';
+import { LoginService } from './login.service';
 
 
 @Component({
@@ -16,14 +17,14 @@ export class LoginComponent implements OnInit {
     errorMessage = ''
 
     
-    constructor() { }
+    constructor(loginService: LoginService) { }
   
     ngOnInit() {
       this.administrator = new Administrator('', '');
     }
   
     onSubmit(f: NgForm) {
-      console.log("login hit");
+      this.loginService.authenticate();
 
     }
   }

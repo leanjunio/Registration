@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm, FormBuilder } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 import { Administrator } from '../administrator';
 import { LoginService } from './login.service';
 
@@ -24,8 +24,7 @@ export class LoginComponent implements OnInit {
     }
   
     onSubmit(f: NgForm) {
-      this.loginService.authenticate();
-
+      this.loginService.authenticate(f.value.email, f.value.password);
     }
   }
   

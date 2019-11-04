@@ -7,7 +7,8 @@ export class LoginService {
 
   constructor() { }
 
-  authenticate(){
-    console.log("login hit");
+  authenticate(email, name){
+    console.log(email + " " + name);
   }
+
 }

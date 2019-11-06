@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class LoginService {
+  url = 'https://glacial-shelf-53509.herokuapp.com/login';
   constructor() { 
 
    }
@@ -13,6 +14,5 @@ export class LoginService {
     //TODO: validate email and name in administrator database
   }
 
- 
 
 }

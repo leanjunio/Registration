@@ -8,7 +8,7 @@ export class LoginService {
 
    }
   authenticate(email, password){
-   
+    console.log(email + " " + password);
     
     //TODO: validate email and name in administrator database
   }

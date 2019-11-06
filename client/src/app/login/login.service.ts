@@ -1,28 +1,36 @@
 import { Injectable } from '@angular/core';
 import { Login } from '../login';
 import { Observable } from 'rxjs';
-
+import { HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class LoginService {
+
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type':  'application/json',
+      'Authorization': 'my-auth-token'
+    })
+  };
   url = 'https://glacial-shelf-53509.herokuapp.com/login';
-  constructor() { 
+  
+  constructor(private http: Http) { }
 
-   }
-  authenticate(email, password){
-    console.log(email + " " + password);
-    
-    //TODO: validate email and name in administrator database
-  }
-
- /** POST: add a new hero to the database */
+ /** POST: add a new login to the /login path */
 addLogin (login: Login): Observable<Login> {
-  return this.http.post<Login>(this.url, login, httpOptions)
+  return this.http.post<Login>(this.url, login, this.httpOptions)
     .pipe(
       catchError(this.handleError('addLogin', login))
     );
+}
+
+authenticate(email, password){
+  console.log(email + " " + password);
+
+  //TODO: validate email and name in administrator database
 }
 
 }

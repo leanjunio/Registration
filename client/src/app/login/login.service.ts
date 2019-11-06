@@ -13,4 +13,6 @@ export class LoginService {
     //TODO: validate email and name in administrator database
   }
 
+ 
+
 }

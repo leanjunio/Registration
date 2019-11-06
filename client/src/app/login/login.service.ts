@@ -1,16 +1,14 @@
 import { Injectable } from '@angular/core';
-import { Administrator } from '../administrator';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
-  admins: Administrator[];
-  constructor(private administrator: Administrator) { 
+  constructor() { 
 
    }
-  authenticate(email, name){
-    //console.log(email + " " + name);
+  authenticate(email, password){
+   
     
     //TODO: validate email and name in administrator database
   }

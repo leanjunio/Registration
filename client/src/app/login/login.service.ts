@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -14,5 +15,12 @@ export class LoginService {
     //TODO: validate email and name in administrator database
   }
 
+ /** POST: add a new hero to the database */
+addLogin (login: Login): Observable<Login> {
+  return this.http.post<Login>(this.url, login, httpOptions)
+    .pipe(
+      catchError(this.handleError('addLogin', login))
+    );
+}
 
 }

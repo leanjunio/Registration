@@ -1,0 +1,17 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: registration
+    environment:
+      - APPLICATION_PORT=3310
+      - DATABASE_URL=mongodb://host.docker.internal:27017/test
+      - DATABASE_SSL=false
+      - FOREST_AUTH_SECRET=909195965b058385ed1327da9c4a1a2baedf35e549f06f640a8c31d9f4da4fc5f8207364a1dd48594e1273695c45b92c
+      - FOREST_ENV_SECRET=1f6fefe692da698dd1de019b35a1c251c0219f66f15b0404cd306247983f53d4
+    ports:
+      - "3310:3310"
+    volumes:
+      - ./:/usr/src/app

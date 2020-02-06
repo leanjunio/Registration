@@ -10,7 +10,7 @@ const authRoutes = require('./api/auth');
 const app = express();
 const HTTP_PORT = 8080;
 
-mongoose.connect(process.env.MONGODB_URL, {useNewUrlParser: true}, () => console.log(`Connected to DB`));
+mongoose.connect(process.env.MONGODB_URL, { useNewUrlParser: true }, () => console.log(`Connected to DB`));
 
 // middleware
 app.use(bodyParser.json());
